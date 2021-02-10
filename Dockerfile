@@ -15,7 +15,7 @@ RUN groupadd -r ${USER} && \
 USER ${USER}
 WORKDIR /home/evobot
 
-RUN git clone https://github.com/eritislami/evobot.git /home/evobot
+RUN cd /home/evobot && git clone https://github.com/eritislami/evobot.git .
 RUN npm install
 VOLUME [ "/home/evobot" ]
 VOLUME [ "/home/evobot/config.json" ]
