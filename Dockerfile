@@ -12,11 +12,6 @@ RUN apt-get update && \
 # install requisites
 RUN npm install i18n --save && npm install i18n-js ytdl-core-discord
 
-# Prepare plexdrive
-
-RUN mkdir /home/evobot/music && mkdir /config/plexdrive
-RUN wget https://github.com/plexdrive/plexdrive/releases/latest/plexdrive-linux-amd64 -o /usr/local/bin/plexdrive && chmod 755 /usr/local/bin/plexdrive && plexdrive mount -c /config/plexdrive --cache-file /config/plexdrive/cache.bolt -o allow_other --root-node-id {$NODE_ID} /home/evobot/music &
-
 # Clone evobot repo
 RUN git clone https://github.com/eritislami/evobot.git /home/evobot 
 
@@ -24,6 +19,9 @@ RUN git clone https://github.com/eritislami/evobot.git /home/evobot
 RUN groupadd -r ${USER} && \
         useradd --home /home/evobot -r -g ${USER} ${USER} && chown -R evobot /home/evobot
 
+# Prepare plexdrive
+RUN mkdir /home/evobot/music && mkdir /config/plexdrive
+RUN wget https://github.com/plexdrive/plexdrive/releases/latest/plexdrive-linux-amd64 -o /usr/local/bin/plexdrive && chmod 755 /usr/local/bin/plexdrive
 
 # set up volume and user
 USER ${USER}
