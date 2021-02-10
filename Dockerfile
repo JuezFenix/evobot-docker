@@ -22,7 +22,7 @@ RUN git clone https://github.com/eritislami/evobot.git /home/evobot/evobot
 USER ${USER}
 WORKDIR /home/evobot/evobot
 
-RUN npm install
+RUN cd /home/evobot/evobot && npm install
 VOLUME [ "/home/evobot/evobot" ]
 
 ENTRYPOINT [ "node", "index.js" ]
