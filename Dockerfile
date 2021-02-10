@@ -11,18 +11,20 @@ RUN apt-get update && \
 # install requisites
 RUN npm install i18n --save && npm install i18n-js
 
+# Clone evobot repo
+RUN git clone https://github.com/eritislami/evobot.git /home/evobot 
+
 # create evobot user
 RUN groupadd -r ${USER} && \
-        useradd --create-home --home /home/evobot -r -g ${USER} ${USER}
+        useradd --home /home/evobot -r -g ${USER} ${USER} && chown -R evobot /home/evobot
 
-# Clone evobot repo
-RUN git clone https://github.com/eritislami/evobot.git /home/evobot/evobot && chown -R evobot /home/evobot/evobot
+
 
 # set up volume and user
 USER ${USER}
-WORKDIR /home/evobot/evobot
+WORKDIR /home/evobot
 
-RUN cd /home/evobot/evobot && npm install
-VOLUME [ "/home/evobot/evobot" ]
+RUN cd /home/evobot && npm install
+VOLUME [ "/home/evobot" ]
 
 ENTRYPOINT [ "node", "index.js" ]
