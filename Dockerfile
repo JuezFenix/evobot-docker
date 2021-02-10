@@ -7,13 +7,13 @@ ENV VERSION=0.10.0
 RUN apt-get update && \
         apt-get install -y python3 build-essential git && \
         apt-get purge -y --auto-remove
-        
-# create evobot user
-RUN groupadd -r ${USER} && \
-        useradd --create-home --home /home/evobot -r -g ${USER} ${USER}
 
 # install requisites
 RUN npm install i18n --save && npm install i18n-js
+
+# create evobot user
+RUN groupadd -r ${USER} && \
+        useradd --create-home --home /home/evobot -r -g ${USER} ${USER}
 
 # Clone evobot repo
 RUN git clone https://github.com/eritislami/evobot.git /home/evobot/evobot
