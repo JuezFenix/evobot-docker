@@ -16,7 +16,7 @@ RUN groupadd -r ${USER} && \
         useradd --create-home --home /home/evobot -r -g ${USER} ${USER}
 
 # Clone evobot repo
-RUN git clone https://github.com/eritislami/evobot.git /home/evobot/evobot
+RUN git clone https://github.com/eritislami/evobot.git /home/evobot/evobot && chown -R evobot /home/evobot/evobot
 
 # set up volume and user
 USER ${USER}
