@@ -7,7 +7,7 @@ ENV NODE_ID=root
 
 # install python and make
 RUN apt-get update && \
-        apt-get install -y python3 build-essential git wget fuse && \
+        apt-get install -y python3 build-essential git wget fuse unzip && \
         apt-get purge -y --auto-remove
 
 # install requisites
