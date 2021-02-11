@@ -16,7 +16,7 @@ RUN npm install i18n --save && npm install i18n-js ytdl-core-discord
 # Clone evobot repo
 #RUN git clone https://github.com/eritislami/evobot.git /home/evobot
 RUN wget https://github.com/eritislami/evobot/archive/${EVOBOT_VERSION}.zip && \
-        unzip ${EVOBOT_VERSION}.zip /home && mv /home/evobot-${EVOBOT_VERSION} /home/evobot
+        unzip ${EVOBOT_VERSION}.zip -d /home && mv /home/evobot-${EVOBOT_VERSION} /home/evobot
 
 # create evobot user
 RUN groupadd -r ${USER} && \
