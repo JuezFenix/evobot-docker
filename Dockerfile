@@ -15,10 +15,7 @@ RUN npm install i18n --save && npm install i18n-js ytdl-core-discord
 
 # Clone evobot repo
 #RUN git clone https://github.com/eritislami/evobot.git /home/evobot
-RUN if [ -d /home/evobot]; 
-        then rm -rf /home/evobot/* 
-        fi && \
-        wget https://github.com/eritislami/evobot/archive/evobot-${EVOBOT_VERSION}.zip && \
+RUN wget https://github.com/eritislami/evobot/archive/evobot-${EVOBOT_VERSION}.zip && \
         unzip ${EVOBOT_VERSION}.zip /home && mv /home-${EVOBOT_VERSION} /home/evobot
 
 # create evobot user
@@ -35,7 +32,6 @@ WORKDIR /home/evobot
 
 RUN cd /home/evobot && npm install
 VOLUME [ "/config/plexdrive" ]
-VOLUME [ "/home/evobot" ]
 VOLUME [ "/home/evobot/clips" ]
 
 ENTRYPOINT [ "node", "index.js" ]
