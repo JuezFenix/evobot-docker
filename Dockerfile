@@ -1,7 +1,8 @@
 FROM node:14.15.5-slim
 
 ENV USER=evobot
-ENV VERSION=0.10.0
+ENV EVOBOT_VERSION=0.10.0
+ENV PLEXDRIVE_VERSION=5.1.0
 ENV NODE_ID=root
 
 # install python and make
@@ -13,7 +14,8 @@ RUN apt-get update && \
 RUN npm install i18n --save && npm install i18n-js ytdl-core-discord
 
 # Clone evobot repo
-RUN git clone https://github.com/eritislami/evobot.git /home/evobot 
+# RUN git clone https://github.com/eritislami/evobot.git /home/evobot
+RUN wget https://github.com/eritislami/evobot/archive/{$EVOBOT_VERSION}.zip && unzip {$EVOBOT_VERSION}.zip /home && mv /home{$EVOBOT_VERSION} /home/evobot
 
 # create evobot user
 RUN groupadd -r ${USER} && \
@@ -21,7 +23,7 @@ RUN groupadd -r ${USER} && \
 
 # Prepare plexdrive
 RUN mkdir /home/evobot/music /config /config/plexdrive
-RUN wget https://github.com/plexdrive/plexdrive/releases/download/5.1.0/plexdrive-linux-amd64 -O /usr/local/bin/plexdrive && chmod 755 /usr/local/bin/plexdrive
+RUN wget https://github.com/plexdrive/plexdrive/releases/download/{$PLEXDRIVE_VERSION}/plexdrive-linux-amd64 -O /usr/local/bin/plexdrive && chmod 755 /usr/local/bin/plexdrive
 
 # set up volume and user
 USER ${USER}
