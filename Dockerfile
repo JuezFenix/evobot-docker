@@ -20,7 +20,7 @@ RUN groupadd -r ${USER} && \
         useradd --home /home/evobot -r -g ${USER} ${USER} && chown -R evobot /home/evobot
 
 # Prepare plexdrive
-RUN mkdir /home/evobot/music && mkdir /config/plexdrive
+RUN mkdir /home/evobot/music /config /config/plexdrive
 RUN wget https://github.com/plexdrive/plexdrive/releases/latest/plexdrive-linux-amd64 -o /usr/local/bin/plexdrive && chmod 755 /usr/local/bin/plexdrive
 
 # set up volume and user
