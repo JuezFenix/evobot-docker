@@ -11,7 +11,7 @@ RUN apt-get update && \
         apt-get purge -y --auto-remove
 
 # install requisites
-RUN npm install i18n --save && npm install i18n-js ytdl-core ytdl-core-discord node-opus
+RUN npm install i18n --save && npm install i18n-js ytdl-core@latest ytdl-core-discord@latest node-opus
 
 # Clone evobot repo
 #RUN git clone https://github.com/eritislami/evobot.git /home/evobot
